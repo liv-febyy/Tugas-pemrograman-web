@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stopwatch</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      width: 700px;
+      height: 400px;
+      border: 2px solid black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .time-display {
+      font-size: 60px;
+      font-family: monospace;
+      margin-bottom: 40px;
+    }
+
+    .seconds {
+      color: green;
+    }
+
+    .milliseconds {
+      color: red;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .start {
+      background-color: green;
+      color: white;
+    }
+
+    .stop {
+      background-color: yellow;
+      color: black;
+    }
+
+    .reset {
+      background-color: red;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="time-display">
+      <span class="seconds" id="seconds">000</span>:<span class="milliseconds" id="milliseconds">00</span>
+    </div>
+    <div class="buttons">
+      <button class="start" onclick="startTimer()">Start Timer</button>
+      <button class="stop" onclick="stopTimer()">Stop Timer</button>
+      <button class="reset" onclick="resetTimer()">Reset Timer</button>
+    </div>
+  </div>
+
+  <script>
+    let milliseconds = 0;
+    let seconds = 0;
+    let timer;
+    let running = false;
+
+    function updateDisplay() {
+      document.getElementById('seconds').textContent = seconds.toString().padStart(3, '0');
+      document.getElementById('milliseconds').textContent = milliseconds.toString().padStart(2, '0');
+    }
+
+    function startTimer() {
+      if (!running) {
+        running = true;
+        timer = setInterval(() => {
+          milliseconds++;
+          if (milliseconds >= 100) {
+            milliseconds = 0;
+            seconds++;
+          }
+          updateDisplay();
+        }, 10);
+      }
+    }
+
+    function stopTimer() {
+      clearInterval(timer);
+      running = false;
+    }
+
+    function resetTimer() {
+      stopTimer();
+      milliseconds = 0;
+      seconds = 0;
+      updateDisplay();
+    }
+
+    updateDisplay();
+  </script>
+</body>
+</html>
