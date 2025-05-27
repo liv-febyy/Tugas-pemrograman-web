@@ -1,0 +1,26 @@
+body {
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  width: 750px;
+  text-align: center;
+}
+
+canvas {
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input, button {
+  margin: 5px;
+  padding: 8px;
+}
